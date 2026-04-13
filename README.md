@@ -79,7 +79,7 @@ flutter doctor --android-licenses
 ## 3. Clonar el repositorio
 
 ```bash
-git clone <url_del_repositorio>
+git clone https://github.com/Hir0Exe/PU-FluidLearn.git
 cd PU-FluidLearn
 ```
 
