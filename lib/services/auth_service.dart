@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/user_model.dart';
@@ -27,7 +28,6 @@ class AuthService {
     }
   }
 
-  /// Registro con correo: crea usuario en Auth y perfil completo en Firestore.
   Future<UserCredential?> signUpWithEmail({
     required String email,
     required String password,
@@ -72,28 +72,34 @@ class AuthService {
     }
   }
 
-  /// Google: si es usuario nuevo, crea documento mínimo; debe completar datos en la app.
+  /// En web usa el popup nativo de Firebase Auth; en móvil usa GoogleSignIn SDK.
   Future<UserCredential?> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final UserCredential userCredential;
 
-      if (googleUser == null) {
-        return null;
+      if (kIsWeb) {
+        final provider = GoogleAuthProvider();
+        userCredential = await _auth.signInWithPopup(provider);
+      } else {
+        final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+        if (googleUser == null) return null;
+
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
+
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        userCredential = await _auth.signInWithCredential(credential);
       }
 
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-
       if (userCredential.additionalUserInfo?.isNewUser ?? false) {
-        await _firestore.collection('users').doc(userCredential.user!.uid).set({
+        await _firestore
+            .collection('users')
+            .doc(userCredential.user!.uid)
+            .set({
           'uid': userCredential.user!.uid,
           'email': userCredential.user!.email ?? '',
           'fullName': '',
@@ -132,7 +138,11 @@ class AuthService {
   }
 
   Future<void> signOut() async {
-    await _googleSignIn.signOut();
+    if (!kIsWeb) {
+      try {
+        await _googleSignIn.signOut();
+      } catch (_) {}
+    }
     await _auth.signOut();
   }
 
