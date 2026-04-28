@@ -4,7 +4,11 @@ import '../../services/auth_service.dart';
 
 /// Tras Google (o si faltan datos obligatorios), el estudiante completa carnet y nombre.
 class CompleteProfileScreen extends StatefulWidget {
+<<<<<<< HEAD
   const CompleteProfileScreen({Key? key}) : super(key: key);
+=======
+  const CompleteProfileScreen({super.key});
+>>>>>>> 2736943 (Se agrega el Proyecto)
 
   @override
   State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();

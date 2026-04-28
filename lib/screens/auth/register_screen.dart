@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
 
 class RegisterScreen extends StatefulWidget {
+<<<<<<< HEAD
   const RegisterScreen({Key? key}) : super(key: key);
+=======
+  const RegisterScreen({super.key});
+>>>>>>> 2736943 (Se agrega el Proyecto)
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();

@@ -19,7 +19,11 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
+<<<<<<< HEAD
   const MyApp({Key? key}) : super(key: key);
+=======
+  const MyApp({super.key});
+>>>>>>> 2736943 (Se agrega el Proyecto)
 
   @override
   State<MyApp> createState() => _MyAppState();
