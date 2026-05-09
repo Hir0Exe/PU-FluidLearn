@@ -6,6 +6,8 @@ class UserModel {
   final String studentId;
   final bool profileComplete;
   final DateTime createdAt;
+  final String bio;
+  final String? profilePhotoUrl;
 
   const UserModel({
     required this.uid,
@@ -14,6 +16,8 @@ class UserModel {
     required this.studentId,
     required this.profileComplete,
     required this.createdAt,
+    this.bio = '',
+    this.profilePhotoUrl,
   });
 
   bool get isProfileComplete =>
@@ -28,6 +32,9 @@ class UserModel {
       'studentId': studentId,
       'profileComplete': profileComplete,
       'createdAt': createdAt.toIso8601String(),
+      if (bio.trim().isNotEmpty) 'bio': bio,
+      if (profilePhotoUrl != null && profilePhotoUrl!.trim().isNotEmpty)
+        'profilePhotoUrl': profilePhotoUrl,
     };
   }
 
@@ -51,6 +58,8 @@ class UserModel {
       studentId: sid,
       profileComplete: explicit || (full.trim().isNotEmpty && sid.trim().isNotEmpty),
       createdAt: created,
+      bio: (map['bio'] ?? '') as String,
+      profilePhotoUrl: map['profilePhotoUrl'] as String?,
     );
   }
 }

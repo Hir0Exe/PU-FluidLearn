@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
+import '../../theme/fluidlearn_colors.dart';
+import '../../widgets/fluidlearn_logo_image.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-<<<<<<< HEAD
-  const LoginScreen({Key? key}) : super(key: key);
-=======
   const LoginScreen({super.key});
->>>>>>> 2736943 (Se agrega el Proyecto)
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -20,8 +18,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
   bool _isLoading = false;
-
-  static const _primary = Color(0xFF1565C0);
 
   @override
   void dispose() {
@@ -53,10 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
       } catch (e) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Error: $e'),
-              backgroundColor: Colors.red,
-            ),
+            SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
           );
         }
       } finally {
@@ -84,10 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error: $e'),
-            backgroundColor: Colors.red,
-          ),
+          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
         );
       }
     } finally {
@@ -100,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: FluidLearnColors.scaffold,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -114,10 +104,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Icon(
-                    Icons.school_rounded,
-                    size: 80,
-                    color: _primary,
+                  const Center(
+                    child: FluidLearnLogoImage(size: 80),
                   ),
                   const SizedBox(height: 24),
                   const Text(
@@ -125,14 +113,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
-                      color: _primary,
+                      color: FluidLearnColors.brandBlue,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Inicio de sesión — USB',
-                    style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: FluidLearnColors.textSecondary,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 36),
@@ -141,8 +132,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _emailController,
                     decoration: InputDecoration(
                       hintText: 'correo@usb.ve',
+                      filled: true,
+                      fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: FluidLearnColors.borderSubtle,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: FluidLearnColors.borderSubtle,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: FluidLearnColors.brandBlue,
+                          width: 1.5,
+                        ),
                       ),
                       contentPadding: const EdgeInsets.all(16),
                     ),
@@ -163,8 +172,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _passwordController,
                     decoration: InputDecoration(
                       hintText: 'Contraseña',
+                      filled: true,
+                      fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: FluidLearnColors.borderSubtle,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: FluidLearnColors.borderSubtle,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: FluidLearnColors.brandBlue,
+                          width: 1.5,
+                        ),
                       ),
                       contentPadding: const EdgeInsets.all(16),
                       suffixIcon: IconButton(
@@ -196,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                     onPressed: _isLoading ? null : _handleLogin,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: _primary,
+                      backgroundColor: FluidLearnColors.brandBlue,
                       padding: const EdgeInsets.all(16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -213,10 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           )
                         : const Text(
                             'Entrar',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
+                            style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
                   ),
                   const SizedBox(height: 24),
@@ -242,8 +266,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      side: const BorderSide(color: _primary),
-                      foregroundColor: _primary,
+                      side: const BorderSide(color: FluidLearnColors.brandBlue),
+                      foregroundColor: FluidLearnColors.brandBlue,
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -264,7 +288,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text(
                           'Registrarse',
                           style: TextStyle(
-                            color: _primary,
+                            color: FluidLearnColors.brandBlue,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

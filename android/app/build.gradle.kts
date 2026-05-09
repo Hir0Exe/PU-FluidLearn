@@ -30,10 +30,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true
-        ndk {
-            // Deshabilitar NDK - no es necesario para este proyecto
-            abiFilters.clear()
-        }
+
     }
 
     buildTypes {

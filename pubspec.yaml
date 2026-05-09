@@ -38,6 +38,14 @@ dependencies:
   firebase_auth: ^6.1.1
   cloud_firestore: ^6.0.3
   google_sign_in: ^6.2.1
+  flutter_tts: ^4.2.5
+  speech_to_text: ^7.3.0
+  record: ^6.2.0
+  path_provider: ^2.1.5
+  audioplayers: ^6.6.0
+  permission_handler: ^12.0.1
+  firebase_storage: ^13.0.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +57,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -60,15 +69,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
-<<<<<<< HEAD
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - assets/images/logo.png
-=======
   assets:
     - assets/images/
->>>>>>> 2736943 (Se agrega el Proyecto)
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -95,3 +97,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# Icono de la app (launcher): regenerar con `dart run flutter_launcher_icons`
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/images/new_logo.png
+  # Marca fluidlearn_colors.brandNavy — integra el logo con el sistema y suaviza bordes claros del PNG
+  adaptive_icon_background: "#162A4E"
+  adaptive_icon_foreground: assets/images/new_logo.png
+  min_sdk_android: 21

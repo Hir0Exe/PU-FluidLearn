@@ -45,5 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>FluidLearn usa el micrófono para practicar speaking y evaluar pronunciación.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>FluidLearn usa el reconocimiento de voz para comprobar lo que dices en las actividades de speaking.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>FluidLearn necesita acceso a tu galería para elegir la foto de perfil.</string>
 </dict>
 </plist>

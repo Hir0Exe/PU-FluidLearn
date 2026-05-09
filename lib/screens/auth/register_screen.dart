@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
+import '../../theme/fluidlearn_colors.dart';
+import '../../widgets/fluidlearn_logo_image.dart';
 
 class RegisterScreen extends StatefulWidget {
-<<<<<<< HEAD
-  const RegisterScreen({Key? key}) : super(key: key);
-=======
   const RegisterScreen({super.key});
->>>>>>> 2736943 (Se agrega el Proyecto)
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -21,8 +19,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
   bool _isLoading = false;
-
-  static const _primary = Color(0xFF1565C0);
 
   @override
   void dispose() {
@@ -56,10 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error: $e'),
-            backgroundColor: Colors.red,
-          ),
+          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
         );
       }
     } finally {
@@ -93,11 +86,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: FluidLearnColors.scaffold,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
+        iconTheme: const IconThemeData(color: FluidLearnColors.textPrimary),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -107,10 +100,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Icon(
-                  Icons.school_rounded,
-                  size: 64,
-                  color: _primary,
+                const Center(
+                  child: FluidLearnLogoImage(size: 64),
                 ),
                 const SizedBox(height: 16),
                 const Text(
@@ -118,14 +109,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: _primary,
+                    color: FluidLearnColors.brandBlue,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Datos de estudiante USB',
-                  style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: FluidLearnColors.textSecondary,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 28),
@@ -199,7 +193,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ElevatedButton(
                   onPressed: _isLoading ? null : _handleRegister,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: _primary,
+                    backgroundColor: FluidLearnColors.brandBlue,
                     padding: const EdgeInsets.all(16),
                   ),
                   child: _isLoading
@@ -231,8 +225,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   label: const Text('Registrarse con Google'),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.all(16),
-                    side: const BorderSide(color: _primary),
-                    foregroundColor: _primary,
+                    side: const BorderSide(color: FluidLearnColors.brandBlue),
+                    foregroundColor: FluidLearnColors.brandBlue,
                   ),
                 ),
                 const SizedBox(height: 16),

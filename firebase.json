@@ -1,5 +1,26 @@
-<<<<<<< HEAD
-{"flutter":{"platforms":{"android":{"default":{"projectId":"pu-fluidlearn","appId":"1:979655401276:android:fddf209127fa0840e7c839","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"pu-fluidlearn","configurations":{"android":"1:979655401276:android:fddf209127fa0840e7c839","web":"1:979655401276:web:45385431e057b0eae7c839","windows":"1:979655401276:web:e32f115c06a0bb64e7c839"}}}}}}
-=======
-{"flutter":{"platforms":{"android":{"default":{"projectId":"pu-fluidlearn-521d4","appId":"1:1038764576846:android:337276ea281f1e8d08731f","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"pu-fluidlearn-521d4","configurations":{"android":"1:1038764576846:android:337276ea281f1e8d08731f","ios":"1:1038764576846:ios:b5d18cc34885033008731f","macos":"1:1038764576846:ios:b5d18cc34885033008731f","web":"1:1038764576846:web:c93d653c8a3faf0f08731f","windows":"1:1038764576846:web:4ccb84d0dbdf817708731f"}}}}}}
->>>>>>> 2736943 (Se agrega el Proyecto)
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "pu-fluidlearn",
+          "appId": "1:979655401276:android:fddf209127fa0840e7c839",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "pu-fluidlearn",
+          "configurations": {
+            "android": "1:979655401276:android:fddf209127fa0840e7c839",
+            "web": "1:979655401276:web:45385431e057b0eae7c839",
+            "windows": "1:979655401276:web:e32f115c06a0bb64e7c839"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  }
+}
