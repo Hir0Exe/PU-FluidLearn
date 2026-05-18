@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../app_state.dart';
 import '../../data/pending_activity_catalog.dart';
+import '../../models/user_model.dart';
 import '../../services/auth_service.dart';
+import '../../widgets/user_avatar_view.dart';
 import '../../services/learning_log_service.dart';
 import '../../theme/fluidlearn_colors.dart';
 import '../../widgets/fluidlearn_logo_image.dart';
@@ -330,12 +332,11 @@ class _SimpleHomeScreenState extends State<SimpleHomeScreen> {
                   ListenableBuilder(
                     listenable: authController,
                     builder: (context, _) {
-                      final photoUrl =
-                          authController.appUser?.profilePhotoUrl?.trim();
+                      final profile = authController.appUser;
                       return Row(
                         children: [
                           _HeaderProfileAvatar(
-                            imageUrl: photoUrl,
+                            profile: profile,
                             onTap: uid == null
                                 ? null
                                 : () {
@@ -794,11 +795,11 @@ Widget _buildSectionTitle(String title) {
   );
 }
 
-/// Círculo superior izquierdo: misma foto que en Me (`profilePhotoUrl`).
+/// Círculo superior izquierdo: mismo avatar que en Me.
 class _HeaderProfileAvatar extends StatefulWidget {
-  const _HeaderProfileAvatar({required this.imageUrl, this.onTap});
+  const _HeaderProfileAvatar({required this.profile, this.onTap});
 
-  final String? imageUrl;
+  final UserModel? profile;
   final VoidCallback? onTap;
 
   @override
@@ -810,23 +811,11 @@ class _HeaderProfileAvatarState extends State<_HeaderProfileAvatar> {
 
   @override
   Widget build(BuildContext context) {
-    final hasPhoto =
-        widget.imageUrl != null && widget.imageUrl!.trim().isNotEmpty;
-
     Widget avatarFace() {
-      return ClipOval(
-        child: SizedBox(
-          width: 30,
-          height: 30,
-          child: hasPhoto
-              ? Image.network(
-                  widget.imageUrl!.trim(),
-                  key: ValueKey<String>(widget.imageUrl!.trim()),
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => _avatarPlaceholder(),
-                )
-              : _avatarPlaceholder(),
-        ),
+      return UserAvatarView(
+        key: ValueKey<int?>(widget.profile?.avatarIndex),
+        profile: widget.profile,
+        size: 30,
       );
     }
 
@@ -871,16 +860,6 @@ class _HeaderProfileAvatarState extends State<_HeaderProfileAvatar> {
     );
   }
 
-  Widget _avatarPlaceholder() {
-    return const ColoredBox(
-      color: Color(0xFFDADDE3),
-      child: Icon(
-        Icons.person_outline_rounded,
-        color: Color(0xFF697386),
-        size: 18,
-      ),
-    );
-  }
 }
 
 class _TopIconButton extends StatefulWidget {

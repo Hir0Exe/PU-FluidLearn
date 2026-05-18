@@ -74,7 +74,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
       if (mounted) {
         setState(() {
           _speechError =
-              'Se necesita permiso de micrófono para evaluar pronunciación.';
+              'Microphone permission is required to evaluate pronunciation.';
         });
       }
       return;
@@ -91,7 +91,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
       setState(() {
         _speechReady = ok;
         if (!ok) {
-          _speechError ??= 'No se pudo iniciar el reconocimiento de voz.';
+          _speechError ??= 'Could not initialize speech recognition.';
         }
       });
     }
@@ -113,7 +113,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-            'En web la grabación es limitada; usa Validar pronunciación con el micrófono.',
+            'On web, recording is limited; use Validate Pronunciation with the microphone.',
           ),
         ),
       );
@@ -159,7 +159,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('No se pudo grabar: $e')));
+        ).showSnackBar(SnackBar(content: Text('Could not record: $e')));
       }
     }
   }
@@ -174,7 +174,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('No se pudo reproducir: $e')));
+        ).showSnackBar(SnackBar(content: Text('Could not play recording: $e')));
       }
     }
   }
@@ -192,7 +192,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
     if (!_speechReady) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(_speechError ?? 'Reconocimiento de voz no disponible.'),
+          content: Text(_speechError ?? 'Speech recognition is not available.'),
         ),
       );
       return;
@@ -200,7 +200,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
     if (_recording) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Detén la grabación antes de validar.'),
+          content: Text('Stop the recording before validating.'),
           backgroundColor: Color(0xFFC67D00),
         ),
       );
@@ -232,7 +232,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-              'No se captó audio. Habla cerca del micrófono e intenta otra vez.',
+              'No audio was captured. Speak near the microphone and try again.',
             ),
             backgroundColor: Color(0xFFC67D00),
           ),
@@ -249,7 +249,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
           });
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('¡Muy bien! Sigue con la siguiente frase.'),
+              content: Text('Very good! Keep going with the next phrase.'),
               backgroundColor: Color(0xFF2E7D4A),
             ),
           );
@@ -260,8 +260,8 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'No coincidió lo suficiente. Escuché: "$words". '
-              'Intenta de nuevo más claro, parecido a: $_current',
+              'It didnt match up enough. I heard: "$words". '
+              'Try again more clearly, similar to: $_current',
             ),
             backgroundColor: const Color(0xFFC67D00),
           ),
@@ -277,7 +277,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-            'Tiempo agotado. Pulsa Validar de nuevo y di la frase completa.',
+            'Time expired. Press Validate again and say the full phrase.',
           ),
           backgroundColor: Color(0xFFC67D00),
         ),
@@ -306,7 +306,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
         setState(() => _validating = false);
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('Error al escuchar: $e')));
+        ).showSnackBar(SnackBar(content: Text('Error validating: $e')));
       }
     }
   }
@@ -334,7 +334,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
             const SizedBox(width: 12),
             const Expanded(
               child: Text(
-                'Speaking: escucha el modelo, graba tu audio y valida con el micrófono.',
+                'Speaking: listen to the model, record your audio and validate with the microphone.',
                 style: TextStyle(
                   fontSize: 14,
                   color: Color(0xFF5F6F86),
@@ -366,7 +366,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
         ],
         const SizedBox(height: 20),
         Text(
-          'Frase ${_phraseIndex + 1} de ${widget.phrases.length}',
+          'Phrase ${_phraseIndex + 1} of ${widget.phrases.length}',
           style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w700,
@@ -406,7 +406,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
             FilledButton.tonalIcon(
               onPressed: _playModel,
               icon: const Icon(Icons.volume_up_rounded, size: 20),
-              label: const Text('Escuchar modelo'),
+              label: const Text('Listen to model'),
             ),
             if (_canRecordFile)
               FilledButton.icon(
@@ -417,13 +417,13 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
                       : const Color(0xFF111D33),
                 ),
                 icon: Icon(_recording ? Icons.stop_rounded : Icons.mic_rounded),
-                label: Text(_recording ? 'Detener grabación' : 'Grabar'),
+                label: Text(_recording ? 'Stop recording' : 'Record'),
               ),
             if (_canRecordFile && _recordPath != null && !_recording)
               OutlinedButton.icon(
                 onPressed: _finishing ? null : _playRecording,
                 icon: const Icon(Icons.play_arrow_rounded),
-                label: const Text('Mi grabación'),
+                label: const Text('My recording'),
               ),
             FilledButton.icon(
               onPressed: (_finishing || _validating || !_speechReady)
@@ -443,7 +443,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
                     )
                   : const Icon(Icons.record_voice_over_rounded),
               label: Text(
-                _validating ? 'Escuchando…' : 'Validar pronunciación',
+                _validating ? 'Listening…' : 'Validate pronunciation',
               ),
             ),
           ],
@@ -451,7 +451,7 @@ class _SpeakingPhraseChallengeState extends State<SpeakingPhraseChallenge> {
         if (_heard.isNotEmpty) ...[
           const SizedBox(height: 16),
           Text(
-            'Reconocido: $_heard',
+            'Recognized: $_heard',
             style: const TextStyle(
               fontSize: 14,
               color: Color(0xFF5F6F86),

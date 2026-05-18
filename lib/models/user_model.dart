@@ -8,6 +8,7 @@ class UserModel {
   final DateTime createdAt;
   final String bio;
   final String? profilePhotoUrl;
+  final int? avatarIndex;
 
   const UserModel({
     required this.uid,
@@ -18,6 +19,7 @@ class UserModel {
     required this.createdAt,
     this.bio = '',
     this.profilePhotoUrl,
+    this.avatarIndex,
   });
 
   bool get isProfileComplete =>
@@ -35,6 +37,7 @@ class UserModel {
       if (bio.trim().isNotEmpty) 'bio': bio,
       if (profilePhotoUrl != null && profilePhotoUrl!.trim().isNotEmpty)
         'profilePhotoUrl': profilePhotoUrl,
+      if (avatarIndex != null) 'avatarIndex': avatarIndex,
     };
   }
 
@@ -60,6 +63,7 @@ class UserModel {
       createdAt: created,
       bio: (map['bio'] ?? '') as String,
       profilePhotoUrl: map['profilePhotoUrl'] as String?,
+      avatarIndex: (map['avatarIndex'] as num?)?.toInt(),
     );
   }
 }

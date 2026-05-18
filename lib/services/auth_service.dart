@@ -223,6 +223,8 @@ class AuthService {
     required String studentId,
     String? bio,
     String? profilePhotoUrl,
+    int? avatarIndex,
+    bool clearProfilePhoto = false,
   }) async {
     final ref = _firestore.collection('users').doc(uid);
     final snap = await ref.get();
@@ -235,6 +237,8 @@ class AuthService {
       if (bio != null) 'bio': bio.trim(),
       if (profilePhotoUrl != null && profilePhotoUrl.trim().isNotEmpty)
         'profilePhotoUrl': profilePhotoUrl.trim(),
+      if (avatarIndex != null) 'avatarIndex': avatarIndex,
+      if (clearProfilePhoto) 'profilePhotoUrl': FieldValue.delete(),
     };
     if (!snap.exists) {
       data['createdAt'] = DateTime.now().toIso8601String();

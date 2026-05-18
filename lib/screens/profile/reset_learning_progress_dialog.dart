@@ -10,19 +10,19 @@ Future<void> showResetLearningProgressDialog(BuildContext context) async {
   final ok = await showDialog<bool>(
     context: context,
     builder: (ctx) => AlertDialog(
-      title: const Text('¿Reiniciar progreso de práctica?'),
+      title: const Text('Reset practice progress?'),
       content: const Text(
-        'Se pondrán a cero: porcentaje por skill en la app, actividades completadas, '
-        'racha y avisos del feed. No borra tu cuenta, nombre ni correo.',
+        'The following will be set to zero: percentage by skill in the app, completed activities, '
+        'streak and feed notifications. It does not delete your account, name or email.',
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(ctx, false),
-          child: const Text('Cancelar'),
+          child: const Text('Cancel'),
         ),
         FilledButton(
           onPressed: () => Navigator.pop(ctx, true),
-          child: const Text('Reiniciar'),
+          child: const Text('Reset'),
         ),
       ],
     ),
@@ -47,7 +47,7 @@ Future<void> showResetLearningProgressDialog(BuildContext context) async {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-            'Progreso reiniciado. Vuelve al inicio para ver 0% y tareas sin marcar.',
+            'Progress reset. Go back to the home screen to see 0% and tasks without marking.',
           ),
         ),
       );
@@ -57,7 +57,7 @@ Future<void> showResetLearningProgressDialog(BuildContext context) async {
     if (context.mounted) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('No se pudo reiniciar: $e')));
+      ).showSnackBar(SnackBar(content: Text('Could not reset: $e')));
     }
   }
 }

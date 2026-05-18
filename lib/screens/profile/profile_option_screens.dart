@@ -9,22 +9,22 @@ class AccountInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profile = authController.appUser;
-    final email = authController.currentUser?.email ?? 'Sin correo';
-    final uid = authController.currentUser?.uid ?? 'Sin UID';
+    final email = authController.currentUser?.email ?? 'Whitout E-mail';
+    final uid = authController.currentUser?.uid ?? 'Whitout UID';
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Información de cuenta')),
+      appBar: AppBar(title: const Text('Account Information')),
       backgroundColor: const Color(0xFFF4F8FE),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           _InfoTile(
-            label: 'Nombre completo',
-            value: profile?.fullName ?? 'Sin dato',
+            label: 'Full Name',
+            value: profile?.fullName ?? 'Without data',
           ),
-          _InfoTile(label: 'Correo', value: email),
-          _InfoTile(label: 'Carnet', value: profile?.studentId ?? 'Sin dato'),
-          _InfoTile(label: 'UID', value: uid),
+          _InfoTile(label: 'E-mail', value: email),
+          _InfoTile(label: 'Student ID', value: profile?.studentId ?? 'Without data'),
+          _InfoTile(label: 'User ID', value: uid),
         ],
       ),
     );
@@ -84,7 +84,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Notificaciones')),
+      appBar: AppBar(title: const Text('Notifications')),
       backgroundColor: const Color(0xFFF4F8FE),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -93,8 +93,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               children: [
                 SwitchListTile(
                   value: reminders,
-                  title: const Text('Recordatorios diarios'),
-                  subtitle: const Text('Recibir recordatorios para practicar'),
+                  title: const Text('Daily Reminders'),
+                  subtitle: const Text('Receive reminders to practice'),
                   onChanged: (value) async {
                     setState(() => reminders = value);
                     await _savePreferences();
@@ -102,8 +102,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ),
                 SwitchListTile(
                   value: pendingActivities,
-                  title: const Text('Actividades pendientes'),
-                  subtitle: const Text('Avisos de tareas por realizar'),
+                  title: const Text('Pending Activities'),
+                  subtitle: const Text('Notifications of tasks to do'),
                   onChanged: (value) async {
                     setState(() => pendingActivities = value);
                     await _savePreferences();
@@ -111,8 +111,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ),
                 SwitchListTile(
                   value: levelUpdates,
-                  title: const Text('Actualizaciones de nivel'),
-                  subtitle: const Text('Aviso cuando subes de nivel'),
+                  title: const Text('Level Updates'),
+                  subtitle: const Text('Notification when you level up'),
                   onChanged: (value) async {
                     setState(() => levelUpdates = value);
                     await _savePreferences();
@@ -132,10 +132,10 @@ class LearningProgressScreen extends StatelessWidget {
     final uid = authController.currentUser?.uid;
     final authService = AuthService();
     return Scaffold(
-      appBar: AppBar(title: const Text('Progreso de aprendizaje')),
+      appBar: AppBar(title: const Text('Learning Progress')),
       backgroundColor: const Color(0xFFF4F8FE),
       body: uid == null
-          ? const Center(child: Text('No hay usuario autenticado.'))
+          ? const Center(child: Text('No authenticated user.'))
           : StreamBuilder<Map<String, double>>(
               stream: authService.watchSkillProgress(uid),
               builder: (context, snapshot) {
@@ -166,7 +166,7 @@ class LearningProgressScreen extends StatelessWidget {
                     OutlinedButton.icon(
                       onPressed: () => showResetLearningProgressDialog(context),
                       icon: const Icon(Icons.restart_alt_rounded),
-                      label: const Text('Reiniciar progreso de práctica'),
+                      label: const Text('Reset practice progress'),
                     ),
                   ],
                 );
@@ -217,7 +217,7 @@ class _AppLanguageScreenState extends State<AppLanguageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Idioma de la app')),
+      appBar: AppBar(title: const Text('App Language')),
       backgroundColor: const Color(0xFFF4F8FE),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -225,13 +225,13 @@ class _AppLanguageScreenState extends State<AppLanguageScreen> {
               padding: const EdgeInsets.all(16),
               children: [
                 const Text(
-                  'Selecciona el idioma de la aplicación',
+                  'Select the app language',
                   style: TextStyle(fontSize: 15, color: Color(0xFF5F6F86)),
                 ),
                 const SizedBox(height: 12),
                 SegmentedButton<String>(
                   segments: const [
-                    ButtonSegment<String>(value: 'es', label: Text('Español')),
+                    ButtonSegment<String>(value: 'es', label: Text('Spanish')),
                     ButtonSegment<String>(value: 'en', label: Text('English')),
                   ],
                   selected: {language},
@@ -243,7 +243,7 @@ class _AppLanguageScreenState extends State<AppLanguageScreen> {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Idioma actual: ${language == 'es' ? 'Español' : 'English'}',
+                  'Current language: ${language == 'es' ? 'Spanish' : 'English'}',
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF7A879A),
@@ -261,29 +261,29 @@ class HelpCenterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Centro de ayuda')),
+      appBar: AppBar(title: const Text('Help Center')),
       backgroundColor: const Color(0xFFF4F8FE),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           const ExpansionTile(
-            title: Text('¿Cómo subo de nivel?'),
+            title: Text('How to level up?'),
             children: [
               Padding(
                 padding: EdgeInsets.all(16),
                 child: Text(
-                  'Completa actividades de cada habilidad para aumentar tu progreso.',
+                  'Complete activities of each skill to increase your progress.',
                 ),
               ),
             ],
           ),
           const ExpansionTile(
-            title: Text('¿Qué pasa con las actividades resueltas?'),
+            title: Text('What happens to the resolved activities?'),
             children: [
               Padding(
                 padding: EdgeInsets.all(16),
                 child: Text(
-                  'Las actividades resueltas deben desaparecer de la lista de pendientes.',
+                  'The resolved activities must disappear from the pending list.',
                 ),
               ),
             ],
@@ -293,12 +293,12 @@ class HelpCenterScreen extends StatelessWidget {
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Soporte contactado. Te responderemos pronto.'),
+                  content: Text('Support contacted. We will respond soon.'),
                 ),
               );
             },
             icon: const Icon(Icons.support_agent_rounded),
-            label: const Text('Contactar soporte'),
+            label: const Text('Contact support'),
           ),
         ],
       ),

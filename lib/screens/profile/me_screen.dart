@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../app_state.dart';
 import '../../services/auth_service.dart';
 import '../../theme/fluidlearn_colors.dart';
+import '../../widgets/user_avatar_view.dart';
 import '../auth/complete_profile_screen.dart';
 import '../home/simple_home_screen.dart';
 import 'profile_option_screens.dart';
@@ -21,10 +22,9 @@ class MeScreen extends StatelessWidget {
               listenable: authController,
               builder: (context, _) {
                 final profile = authController.appUser;
-                final fullName = profile?.fullName ?? 'Usuario';
+                final fullName = profile?.fullName ?? 'User';
                 final email =
-                    authController.currentUser?.email ?? 'correo@ejemplo.com';
-                final photoUrl = profile?.profilePhotoUrl?.trim();
+                    authController.currentUser?.email ?? 'email@example.com';
                 final bioText = profile?.bio.trim() ?? '';
                 final showBio = bioText.isNotEmpty;
 
@@ -32,36 +32,11 @@ class MeScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(16, 20, 16, 120),
                   child: Column(
                     children: [
-                      Container(
-                        width: 102,
-                        height: 102,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 2),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x22000000),
-                              blurRadius: 8,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: CircleAvatar(
-                          key: ValueKey<String>(photoUrl ?? ''),
-                          radius: 51,
-                          backgroundColor: const Color(0xFFDADDE3),
-                          backgroundImage: photoUrl != null && photoUrl.isNotEmpty
-                              ? NetworkImage(photoUrl)
-                              : null,
-                          child: photoUrl == null || photoUrl.isEmpty
-                              ? const Icon(
-                                  Icons.person_outline_rounded,
-                                  color: Color(0xFF697386),
-                                  size: 38,
-                                )
-                              : null,
-                        ),
+                      UserAvatarView(
+                        key: ValueKey<int?>(profile?.avatarIndex),
+                        profile: profile,
+                        size: 102,
+                        showBorder: true,
                       ),
                       const SizedBox(height: 14),
                       Text(
@@ -95,7 +70,7 @@ class MeScreen extends StatelessWidget {
                   const SizedBox(height: 12),
                   _ProfileActionChip(
                     icon: Icons.edit_rounded,
-                    label: 'Edit Profile',
+                    label: 'Personal Data',
                     onTap: () async {
                       await Navigator.of(context).push<void>(
                         MaterialPageRoute<void>(
@@ -256,29 +231,29 @@ class _StatsCard extends StatelessWidget {
             icon: Icons.local_fire_department_rounded,
             iconBg: Color(0xFFFFF1DC),
             iconColor: Color(0xFFFFB352),
-            value: '0 días',
-            label: 'Racha',
+            value: '0 days',
+            label: 'Streak',
           ),
           _StatItem(
             icon: Icons.emoji_events_outlined,
             iconBg: Color(0xFFFFF7D9),
             iconColor: Color(0xFFFFCD4C),
             value: '0',
-            label: 'Puntos',
+            label: 'Points',
           ),
           _StatItem(
             icon: Icons.menu_book_rounded,
             iconBg: Color(0xFFE8FCF3),
             iconColor: Color(0xFF49CE93),
             value: '0',
-            label: 'Lecciones',
+            label: 'Lessons',
           ),
           _StatItem(
             icon: Icons.av_timer_rounded,
             iconBg: Color(0xFFE8F2FF),
             iconColor: Color(0xFF76A9E8),
             value: '0h',
-            label: 'Horas',
+            label: 'Hours',
           ),
         ],
       ),
