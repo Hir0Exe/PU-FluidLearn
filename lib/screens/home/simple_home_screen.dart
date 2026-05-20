@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../app_state.dart';
+import '../../data/daily_tips.dart';
 import '../../data/pending_activity_catalog.dart';
 import '../../models/user_model.dart';
 import '../../services/auth_service.dart';
@@ -35,13 +36,8 @@ class _SimpleHomeScreenState extends State<SimpleHomeScreen> {
   @override
   void initState() {
     super.initState();
-    _tips = const [
-      'Practice 15 minutes daily and improve a level in 30 days.',
-      'Mix listening and speaking in the same session for better recall.',
-      'Read aloud for 5 minutes to connect pronunciation and fluency.',
-      'Write three sentences about your day — small habits build fluency.',
-      'Review yesterday’s mistakes before starting new activities.',
-    ];
+    _tips = DailyTips.tips;
+    _tipIndex = DateTime.now().day % _tips.length;
     _tipTimer = Timer.periodic(const Duration(seconds: 10), (_) {
       if (!mounted) return;
       setState(() => _tipIndex = (_tipIndex + 1) % _tips.length);

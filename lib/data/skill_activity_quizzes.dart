@@ -36,7 +36,17 @@ class SkillQuiz {
   final List<SkillQuizQuestion> questions;
 }
 
-SkillQuiz? quizForTaskId(String taskId) => _quizzes[taskId];
+final Map<String, SkillQuiz> _assetQuizzes = {};
+
+/// Registers quizzes loaded from local JSON (Reading / Writing).
+void registerAssetQuizzes(Map<String, SkillQuiz> quizzes) {
+  _assetQuizzes
+    ..clear()
+    ..addAll(quizzes);
+}
+
+SkillQuiz? quizForTaskId(String taskId) =>
+    _assetQuizzes[taskId] ?? _quizzes[taskId];
 
 /// IDs de todas las tareas (para limpiar completados al reiniciar progreso).
 const List<String> kAllSkillTaskIds = [
@@ -160,137 +170,6 @@ final Map<String, SkillQuiz> _quizzes = {
     ],
     questions: const [],
   ),
-  'reading_skim': SkillQuiz(
-    intro:
-        'Passage:\n\n'
-        'Urban gardening improves air quality and builds community. '
-        'Many cities now offer small plots to residents for a low fee.',
-    questions: const [
-      SkillQuizQuestion(
-        prompt: 'What is the main idea?',
-        choices: [
-          'Cities ban all gardens',
-          'Urban gardening has social and environmental benefits',
-          'Plots are always free',
-          'Air quality never changes',
-        ],
-        correctIndex: 1,
-      ),
-      SkillQuizQuestion(
-        prompt: 'According to the text, plots are usually…',
-        choices: [
-          'Very expensive',
-          'Offered for a low fee',
-          'Illegal',
-          'Only for tourists',
-        ],
-        correctIndex: 1,
-      ),
-    ],
-  ),
-  'reading_detail': SkillQuiz(
-    intro:
-        'Text:\n\n'
-        'The workshop starts at 9:00. Late arrivals after 9:15 must wait '
-        'until the first break. Materials are included; laptops are optional.',
-    questions: const [
-      SkillQuizQuestion(
-        prompt: 'When does the workshop start?',
-        choices: ['8:45', '9:00', '9:15', '10:00'],
-        correctIndex: 1,
-      ),
-      SkillQuizQuestion(
-        prompt: 'Are laptops required?',
-        choices: [
-          'Yes, always',
-          'No, they are optional',
-          'Only for instructors',
-          'The text does not say',
-        ],
-        correctIndex: 1,
-      ),
-      SkillQuizQuestion(
-        prompt: 'If you arrive at 9:20, what happens?',
-        choices: [
-          'You cannot enter ever',
-          'You wait until the first break',
-          'You get a refund',
-          'You lead the session',
-        ],
-        correctIndex: 1,
-      ),
-    ],
-  ),
-  'reading_vocab': SkillQuiz(
-    intro: 'Sentence: "The findings were ambiguous; experts disagreed."',
-    questions: const [
-      SkillQuizQuestion(
-        prompt: 'In context, "ambiguous" is closest to…',
-        choices: [
-          'Very clear',
-          'Open to more than one interpretation',
-          'Illegal',
-          'Finished',
-        ],
-        correctIndex: 1,
-      ),
-      SkillQuizQuestion(
-        prompt: 'Which word is a synonym of "ambiguous"?',
-        choices: ['Definite', 'Unclear / vague', 'Loud', 'Ancient'],
-        correctIndex: 1,
-      ),
-    ],
-  ),
-  'writing_sentence': SkillQuiz(
-    intro:
-        'Solo escritura: responde en inglés con oraciones completas. '
-        'Revisa mayúsculas y puntuación.',
-    questions: const [
-      SkillQuizQuestion(
-        prompt:
-            'Write one clear sentence explaining why being on time matters in a university class.',
-        minWords: 14,
-      ),
-      SkillQuizQuestion(
-        prompt:
-            'Write one sentence using "although" to contrast two different ideas.',
-        minWords: 12,
-      ),
-    ],
-  ),
-  'writing_paragraph': SkillQuiz(
-    intro: 'Solo escritura: dos bloques en inglés.',
-    questions: const [
-      SkillQuizQuestion(
-        prompt:
-            'Write a short paragraph (3–5 sentences) about how you organize study time during exam week.',
-        minWords: 35,
-      ),
-      SkillQuizQuestion(
-        prompt:
-            'In 2–3 sentences, describe one study habit you want to improve next month.',
-        minWords: 22,
-      ),
-    ],
-  ),
-  'writing_edit': SkillQuiz(
-    intro:
-        'Texto con errores (corrígelo por escrito):\n\n'
-        '"Their going to there house over their because they forgot they\'re keys."',
-    questions: const [
-      SkillQuizQuestion(
-        prompt:
-            'Write the fully corrected version as one or two proper English sentences.',
-        minWords: 10,
-      ),
-      SkillQuizQuestion(
-        prompt:
-            'In at least 15 words (English), mention two kinds of mistakes you fixed '
-            '(for example: wrong homophone, apostrophe, word order…).',
-        minWords: 15,
-      ),
-    ],
-  ),
   'listening_news_blurb': SkillQuiz(
     intro:
         'Titular de radio breve. Pulsa Escuchar y responde sobre la idea principal.',
@@ -328,45 +207,5 @@ final Map<String, SkillQuiz> _quizzes = {
       'How about you, did you get some rest?',
     ],
     questions: const [],
-  ),
-  'reading_hours_table': SkillQuiz(
-    intro:
-        'Horario (solo texto):\n\n'
-        'Library — Mon–Fri 9:00–20:00, Sat 10:00–18:00, Sun closed.',
-    questions: const [
-      SkillQuizQuestion(
-        prompt: 'Which day is the library closed all day?',
-        choices: ['Monday', 'Saturday', 'Sunday', 'Friday'],
-        correctIndex: 2,
-      ),
-      SkillQuizQuestion(
-        prompt: 'Latest closing time on a weekday?',
-        choices: ['6 p.m.', '7 p.m.', '8 p.m.', '9 p.m.'],
-        correctIndex: 2,
-      ),
-      SkillQuizQuestion(
-        prompt: 'Saturday opening time?',
-        choices: ['9 a.m.', '10 a.m.', '11 a.m.', 'Noon'],
-        correctIndex: 1,
-      ),
-    ],
-  ),
-  'writing_micro_email': SkillQuiz(
-    intro:
-        'Solo escritura: correo breve en inglés a tu profesor pidiendo dos días más '
-        'para una entrega.',
-    questions: const [
-      SkillQuizQuestion(
-        prompt:
-            'Write a polite subject line only (English, one line, at least 5 words).',
-        minWords: 5,
-      ),
-      SkillQuizQuestion(
-        prompt:
-            'Write the email body: greet, ask for a two-day extension with a short reason, '
-            'and close politely. At least 22 words.',
-        minWords: 22,
-      ),
-    ],
   ),
 };

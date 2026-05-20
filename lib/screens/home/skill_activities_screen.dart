@@ -129,23 +129,23 @@ class _SkillActivitiesScreenState extends State<SkillActivitiesScreen> {
         return const [
           _SkillTask(
             id: 'writing_sentence',
-            title: 'Sentence building',
-            subtitle: 'Solo escritura: dos oraciones',
+            title: 'Formal correspondence',
+            subtitle: 'Writing · Multiple choice',
           ),
           _SkillTask(
             id: 'writing_paragraph',
-            title: 'Short paragraph',
-            subtitle: 'Solo escritura: párrafo + reflexión',
+            title: 'Academic punctuation',
+            subtitle: 'Writing · Multiple choice',
           ),
           _SkillTask(
             id: 'writing_edit',
-            title: 'Edit for clarity',
-            subtitle: 'Solo escritura: corrige y explica',
+            title: 'Passive voice',
+            subtitle: 'Writing · Multiple choice',
           ),
           _SkillTask(
             id: 'writing_micro_email',
-            title: 'Micro-email',
-            subtitle: 'Solo escritura: asunto + cuerpo',
+            title: 'Connectors & integrity',
+            subtitle: 'Writing · Multiple choice',
           ),
         ];
       default:

@@ -7,11 +7,13 @@ import 'screens/auth/login_screen.dart';
 import 'screens/auth/complete_profile_screen.dart';
 import 'screens/home/simple_home_screen.dart';
 import 'screens/splash/fluidlearn_intro_splash.dart';
+import 'data/local_skill_questions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await LocalSkillQuestions.load();
 
   initAppState();
 

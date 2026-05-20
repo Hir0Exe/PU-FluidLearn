@@ -1,0 +1,77 @@
+[
+    {
+      "id": 6,
+      "skill": "writing",
+      "level": "B1",
+      "topic": "formal correspondence",
+      "type": "multiple_choice",
+      "question": "Choose the most formal way to start an email to a university dean whose name you do not know.",
+      "options": [
+        "Hey there,",
+        "Dear Sir or Madam,",
+        "To anyone reading this,",
+        "Hi Dean,"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": 7,
+      "skill": "writing",
+      "level": "A2",
+      "topic": "academic punctuation",
+      "type": "multiple_choice",
+      "question": "Which sentence uses correct punctuation to introduce a list?",
+      "options": [
+        "The course covers the following areas: history, literature, and art.",
+        "The course covers history; literature and art.",
+        "The course covers, history, literature, art.",
+        "The course covers. History literature art."
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 8,
+      "skill": "writing",
+      "level": "B1",
+      "topic": "passive voice",
+      "type": "multiple_choice",
+      "question": "Identify the grammatically correct sentence in the passive voice.",
+      "options": [
+        "The experiment was conducted by the students.",
+        "The students conducting the experiment.",
+        "Students conduct the experiment.",
+        "The experiment conduct by the students."
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": 9,
+      "skill": "writing",
+      "level": "A2",
+      "topic": "logical connectors",
+      "type": "multiple_choice",
+      "question": "To connect two contrasting ideas in a paragraph, which transition word is most appropriate?",
+      "options": [
+        "Furthermore",
+        "However",
+        "Similarly",
+        "Therefore"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": 10,
+      "skill": "writing",
+      "level": "B2",
+      "topic": "academic integrity",
+      "type": "multiple_choice",
+      "question": "Which of the following actions is officially considered 'plagiarism' in a university paper?",
+      "options": [
+        "Paraphrasing a source and providing a clear citation.",
+        "Using someone else's ideas or words without giving them credit.",
+        "Discussing common knowledge without adding a source.",
+        "Writing an original conclusion based on your own data."
+      ],
+      "correctAnswer": 1
+    }
+  ]

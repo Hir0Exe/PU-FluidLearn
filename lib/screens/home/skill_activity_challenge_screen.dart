@@ -56,7 +56,7 @@ class _SkillActivityChallengeScreenState
       case 'reading':
         return 'Reading: lee el texto en pantalla y responde con opción múltiple.';
       case 'writing':
-        return 'Writing: redacta en los recuadros; no hay audio en estas tareas.';
+        return 'Writing: read each question and choose the best answer.';
       case 'speaking':
         return 'Speaking: escucha el modelo, graba y valida tu pronunciación con el micrófono.';
       default:

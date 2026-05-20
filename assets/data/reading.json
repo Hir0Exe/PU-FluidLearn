@@ -1,0 +1,80 @@
+[
+    {
+      "id": 1,
+      "skill": "reading",
+      "level": "B1",
+      "topic": "campus announcements",
+      "type": "multiple_choice",
+      "text": "The university library will be closed for renovations starting next Monday. Students are advised to return all borrowed materials by Friday at 5:00 PM.",
+      "question": "According to the text, what must students do before the weekend?",
+      "options": [
+        "Register for new library cards.",
+        "Hand in their borrowed books and materials.",
+        "Apply for an extension on their loans.",
+        "Help with the renovation process."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Students are advised to return borrowed materials before Friday."
+    },
+    {
+      "id": 2,
+      "skill": "reading",
+      "level": "B1",
+      "topic": "academic writing",
+      "type": "multiple_choice",
+      "question": "In an academic essay, the 'Thesis Statement' is primarily used to:",
+      "options": [
+        "Summarize every paragraph in the text.",
+        "Present the main argument or focus of the paper.",
+        "List the references and bibliography.",
+        "Introduce the author's biography."
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": 3,
+      "skill": "reading",
+      "level": "A2",
+      "topic": "university vocabulary",
+      "type": "multiple_choice",
+      "question": "Which of the following is a synonym for 'compulsory' in a university syllabus?",
+      "options": [
+        "Optional",
+        "Mandatory",
+        "Leisurely",
+        "Suggested"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": 4,
+      "skill": "reading",
+      "level": "B2",
+      "topic": "research context",
+      "type": "multiple_choice",
+      "text": "The results of the study were inconclusive; therefore, further research is needed.",
+      "question": "What does the word 'inconclusive' mean in this context?",
+      "options": [
+        "Final and certain.",
+        "Not leading to a firm conclusion.",
+        "Extremely successful.",
+        "Quickly performed."
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": 5,
+      "skill": "reading",
+      "level": "B1",
+      "topic": "scientific papers",
+      "type": "multiple_choice",
+      "question": "What is the main purpose of an 'abstract' at the beginning of a research paper?",
+      "options": [
+        "To provide a brief overview of the entire study.",
+        "To acknowledge the people who helped the author.",
+        "To provide a detailed list of all data tables.",
+        "To argue against other scientists' opinions."
+      ],
+      "correctAnswer": 0
+    }
+  ]
